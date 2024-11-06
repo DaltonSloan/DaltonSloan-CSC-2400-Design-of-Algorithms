@@ -36,7 +36,7 @@ def measure_time(sort_func, arr):
     start_time = time.perf_counter()
     sort_func(arr)
     end_time = time.perf_counter()
-    return (end_time - start_time)
+    return end_time - start_time
 
 def main():
     file_path = 'unsorted_sequences.txt'
@@ -84,7 +84,7 @@ def main():
     plt.plot(x, py_sort_times, label="Python Sort Time", marker='x')
 
     plt.xlabel('Sequence Index')
-    plt.ylabel('Time (seconds)')
+    plt.ylabel('Time (Seconds)')
     plt.title('Sorting Algorithm Performance')
     plt.legend()
     plt.grid(True)
