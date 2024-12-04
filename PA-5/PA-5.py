@@ -1,3 +1,10 @@
+# Dalton W. Sloan & Nick S
+# CSC 2400-001
+# Programing Assignment 5
+# Dec 4th, 2024
+
+# I worked with Nick S on this programming assignment.
+
 import time
 from collections import deque
 
