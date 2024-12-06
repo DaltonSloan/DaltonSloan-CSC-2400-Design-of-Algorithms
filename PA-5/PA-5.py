@@ -1,12 +1,13 @@
-# Dalton W. Sloan & Nick S
+# Dalton W. Sloan & Nick N
 # CSC 2400-001
 # Programing Assignment 5
 # Dec 4th, 2024
 
-# I worked with Nick S on this programming assignment.
+# I worked with Nick N on this programming assignment.
 
 import time
 from collections import deque
+import matplotlib.pyplot as plt
 
 def read_graphs(file_path):
     with open(file_path, "r") as file:
@@ -86,6 +87,25 @@ def measure_time(func, E, n):
     end = time.time()
     return result, (end - start) * 1e6  # Time in microseconds
 
+def plot_runtimes(runtimes):
+    x = list(range(1, len(runtimes) + 1))
+    dfs_rec_times = [t[0] for t in runtimes]
+    dfs_stack_times = [t[1] for t in runtimes]
+    bfs_times = [t[2] for t in runtimes]
+
+    plt.figure(figsize=(12, 8))
+    plt.plot(x, dfs_rec_times, label="DFS Recursive", color="blue", marker="o")
+    plt.plot(x, dfs_stack_times, label="DFS Stack-Based", color="green", marker="s")
+    plt.plot(x, bfs_times, label="BFS Queue-Based", color="red", marker="^")
+
+    plt.xlabel("Graph Number")
+    plt.ylabel("Time (microseconds)")
+    plt.title("Runtime Comparison of Graph Algorithms")
+    plt.legend()
+    plt.grid(True)
+    plt.savefig("algorithm_runtimes.png")  # Save the plot as a PNG file
+    plt.show()
+
 def main():
     graphs = read_graphs("random_graphs.txt")
     n = 50  # Each graph has 50 vertices
@@ -123,6 +143,9 @@ def main():
 
     with open("runtimes.txt", "w") as file:
         file.write("\n".join(f"{t[0]} {t[1]} {t[2]}" for t in runtimes))
+
+    # Extra Credit: Plot runtimes
+    plot_runtimes(runtimes)
 
 if __name__ == "__main__":
     main()
